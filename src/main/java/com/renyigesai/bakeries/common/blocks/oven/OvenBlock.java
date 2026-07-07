@@ -3,6 +3,7 @@ package com.renyigesai.bakeries.common.blocks.oven;
 
 import com.mojang.serialization.MapCodec;
 import com.renyigesai.bakeries.common.init.BakeriesBlocks;
+import com.renyigesai.bakeries.common.init.BakeriesSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -32,6 +33,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -120,15 +122,42 @@ public class OvenBlock extends BaseEntityBlock {
             return this.openContainer(level, pos, player);
         }
     }
-    protected InteractionResult openContainer(Level level, BlockPos pos, Player player){
+    protected InteractionResult openContainer(
+            Level level,
+            BlockPos pos,
+            Player player
+    ) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
 
-        if (blockEntity instanceof OvenBlockEntity ovenBlockEntity) {
-            ((ServerPlayer) player).openMenu((MenuProvider)ovenBlockEntity, pos);
-            return InteractionResult.CONSUME;
-        }else {
-            throw new IllegalStateException("Our Container provider is missing!");
+        if (!(blockEntity instanceof OvenBlockEntity ovenBlockEntity)) {
+            throw new IllegalStateException("Oven block entity is missing at " + pos);
         }
+
+        if (!(player instanceof ServerPlayer serverPlayer)) {
+            return InteractionResult.PASS;
+        }
+
+        serverPlayer.openMenu(ovenBlockEntity, pos);
+
+        level.blockEvent(
+                pos,
+                level.getBlockState(pos).getBlock(),
+                0,
+                0
+        );
+
+        level.playSound(
+                null,
+                pos,
+                BakeriesSounds.OVEN_OPEN.get(),
+                SoundSource.BLOCKS,
+                1.0F,
+                1.0F
+        );
+
+        level.gameEvent(player, GameEvent.BLOCK_OPEN, pos);
+
+        return InteractionResult.CONSUME;
     }
 
     @Override

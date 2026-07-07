@@ -20,6 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ListBackedContainer;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.storage.TagValueOutput;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
@@ -38,6 +39,13 @@ public class BreadRackBlockEntity extends BlockEntity implements ItemOwner , Lis
     public BreadRackBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(BakeriesBlocks.Entities.BREAD_RACK_ENTITY.get(), pPos, pBlockState);
         inventory = new ItemStackHandler(4);
+
+        if (pBlockState.hasProperty(BlockStateProperties.OPEN)
+                && pBlockState.getValue(BlockStateProperties.OPEN)) {
+            this.state = State.OPEN;
+            this.progress = 1.0F;
+            this.progressOld = 1.0F;
+        }
     }
 
     public int getInventoryCount() {

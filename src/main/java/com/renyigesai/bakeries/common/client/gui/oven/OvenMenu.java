@@ -58,10 +58,10 @@ public class OvenMenu extends AbstractContainerMenu{
                 this.addSlot(new Slot(inv, sj + (si + 1) * 9, 8 + sj * 18, 84 + si * 18));
         for (int si = 0; si < 9; ++si)
             this.addSlot(new Slot(inv, si, 8 + si * 18, 142));
-        this.ovenBlockEntity.getLevel().blockEvent(this.ovenBlockEntity.getBlockPos(),this.ovenBlockEntity.getBlockState().getBlock(),0,0);
-        if (ovenBlockEntity.getLevel() instanceof ServerLevel serverLevel){
-            serverLevel.playSound(null,ovenBlockEntity.getBlockPos(), BakeriesSounds.OVEN_OPEN.get(), SoundSource.BLOCKS);
-        }
+//        this.ovenBlockEntity.getLevel().blockEvent(this.ovenBlockEntity.getBlockPos(),this.ovenBlockEntity.getBlockState().getBlock(),0,0);
+//        if (ovenBlockEntity.getLevel() instanceof ServerLevel serverLevel){
+//            serverLevel.playSound(null,ovenBlockEntity.getBlockPos(), BakeriesSounds.OVEN_OPEN.get(), SoundSource.BLOCKS);
+//        }
     }
 
     @Override
@@ -108,7 +108,24 @@ public class OvenMenu extends AbstractContainerMenu{
     @Override
     public void removed(Player player) {
         super.removed(player);
-        this.ovenBlockEntity.getLevel().blockEvent(this.ovenBlockEntity.getBlockPos(),this.ovenBlockEntity.getBlockState().getBlock(),0,1);
+
+        if (player.level().isClientSide() || this.ovenBlockEntity == null) {
+            return;
+        }
+
+        Level level = this.ovenBlockEntity.getLevel();
+        if (level == null) {
+            return;
+        }
+
+        BlockPos pos = this.ovenBlockEntity.getBlockPos();
+
+        level.blockEvent(
+                pos,
+                level.getBlockState(pos).getBlock(),
+                0,
+                1
+        );
     }
 
     public OvenBlockEntity getBlockEntity() {
