@@ -115,7 +115,7 @@ public class BreadRackRender extends BlockEntityItemRenderer<BreadRackBlockEntit
             BlockModelRenderState blockModelRenderState = blockModelRenderStates[slot];
             if (blockModelRenderState != null){
                 Direction facing = state.facing;
-                float rotation = -facing.toYRot();
+                float rotation = facing.toYRot();
                 Vec2 pos2d = transformPositionByDirection(VEC2S[state.getInventoryCount()][slot],facing);
                 // ������Ʒ�������еľ������꣨���߶ȣ�
                 Vec3 worldPos = transitionVec3(pos2d);
