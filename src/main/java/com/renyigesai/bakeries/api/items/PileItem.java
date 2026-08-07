@@ -65,7 +65,11 @@ public class PileItem extends BlockItem {
 
     @Override
     public @NotNull InteractionResult useOn(UseOnContext pContext) {
-        return InteractionResult.FAIL;
+        Player player = pContext.getPlayer();
+        if (player != null && player.isShiftKeyDown()){
+            return pileUseOn(pContext);
+        }
+        return InteractionResult.PASS;
     }
 
     public InteractionResult pileUseOn(UseOnContext pContext) {

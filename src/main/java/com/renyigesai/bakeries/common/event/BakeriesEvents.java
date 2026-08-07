@@ -40,30 +40,6 @@ public class BakeriesEvents {
     private static int onPlayerLookBlockTime;
 
     @SubscribeEvent
-    public static void onPileItemUseOn(PlayerInteractEvent.RightClickBlock event) {
-        Player player = event.getEntity();
-        Level level = event.getLevel();
-        ItemStack handItem = event.getItemStack();
-        InteractionHand hand = event.getHand();
-        if (level.isClientSide()){
-            return;
-        }
-        if (!player.isShiftKeyDown()){
-            return;
-        }
-        if (!(handItem.getItem() instanceof PileItem pileItem)){
-            return;
-        }
-        event.setCanceled(true);
-        event.setCancellationResult(InteractionResult.SUCCESS);
-        UseOnContext context = new UseOnContext(level, player, hand, handItem, event.getHitVec());
-        InteractionResult result = pileItem.pileUseOn(context);
-        if (result == InteractionResult.PASS) {
-
-        }
-    }
-
-    @SubscribeEvent
     public static void onFlourSieveUse(PlayerInteractEvent.RightClickBlock event) {
         Player player = event.getEntity();
         Level level = event.getLevel();
