@@ -14,6 +14,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -21,7 +23,7 @@ public class BaguetteItem extends RepeatEatItem {
 
 
     public BaguetteItem(Identifier identifier) {
-        super(BakeriesBlocks.BAGUETTE.get(),new Item.Properties().food(BakeriesFoodProperties.BAGUETTE).attributes(createAttributes()).stacksTo(1).useBlockDescriptionPrefix().setId(ResourceKey.create(Registries.ITEM,identifier)),4,false);
+        super(BakeriesBlocks.BAGUETTE.get(),new Item.Properties().food(BakeriesFoodProperties.BAGUETTE).enchantable(15).attributes(createAttributes()).stacksTo(1).useBlockDescriptionPrefix().setId(ResourceKey.create(Registries.ITEM,identifier)),4,false);
     }
 
     @Override

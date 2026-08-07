@@ -181,7 +181,7 @@ public class PileItem extends BlockItem {
     @Override
     public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
-        builder.accept(Component.translatable("tooltips.bakeries.pile_item_place").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+        builder.accept(Component.translatable("tooltips.bakeries.pile_item_place").withStyle(ChatFormatting.DARK_GRAY).withStyle(ChatFormatting.ITALIC));
         if (isPerfect(itemStack)){
             builder.accept(Component.translatable("tooltips.bakeries.pile_item_perfect").withStyle(ChatFormatting.GOLD));
         }

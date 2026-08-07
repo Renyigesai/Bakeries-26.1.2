@@ -1,5 +1,6 @@
 package com.renyigesai.bakeries.common.blocks.luminous_light_sign;
 
+import com.mojang.serialization.MapCodec;
 import com.renyigesai.bakeries.BakeriesMod;
 import com.renyigesai.bakeries.common.blocks.HorizontalConnectBlock;
 import com.renyigesai.bakeries.common.utils.ItemUtils;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,6 +39,10 @@ public class LuminousLightSignBlock extends HorizontalConnectBlock implements En
         super(Properties.ofFullCopy(Blocks.GLASS).lightLevel(litBlockEmission(15)).setId(ResourceKey.create(Registries.BLOCK,identifier)));
     }
 
+    public LuminousLightSignBlock(Properties properties) {
+        super(properties);
+    }
+
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return switch (state.getValue(FACING)) {
@@ -45,6 +51,11 @@ public class LuminousLightSignBlock extends HorizontalConnectBlock implements En
             case EAST -> box(6, 10, 0, 10, 14, 16);
             case WEST -> box(6, 10, 0, 10, 14, 16);
         };
+    }
+
+    @Override
+    public MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(LuminousLightSignBlock::new);
     }
 
     @Override

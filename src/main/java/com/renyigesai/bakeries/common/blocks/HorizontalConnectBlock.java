@@ -24,7 +24,7 @@ public class HorizontalConnectBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+    public MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return simpleCodec(HorizontalConnectBlock::new);
     }
 

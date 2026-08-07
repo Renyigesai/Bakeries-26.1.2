@@ -1,15 +1,10 @@
 package com.renyigesai.bakeries.common.blocks.letter_tile;
 
 import com.mojang.serialization.MapCodec;
-import com.renyigesai.bakeries.BakeriesMod;
-import com.renyigesai.bakeries.common.blocks.HorizontalConnectBlock;
-import com.renyigesai.bakeries.common.blocks.luminous_light_sign.LuminousLightSignBlockEntity;
 import com.renyigesai.bakeries.common.utils.ItemUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.InteractionHand;
@@ -28,11 +23,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.Nullable;
-
-import java.util.function.ToIntFunction;
 
 public class LetterTileBlock extends HorizontalDirectionalBlock implements EntityBlock {
     public LetterTileBlock(Identifier identifier) {

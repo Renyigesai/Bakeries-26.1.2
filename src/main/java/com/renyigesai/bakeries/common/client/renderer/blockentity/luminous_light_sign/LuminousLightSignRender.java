@@ -5,8 +5,6 @@ import com.mojang.math.Axis;
 import com.renyigesai.bakeries.common.blocks.luminous_light_sign.LuminousLightSignBlock;
 import com.renyigesai.bakeries.common.blocks.luminous_light_sign.LuminousLightSignBlockEntity;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.font.glyphs.BakedGlyph;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -14,8 +12,6 @@ import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class LuminousLightSignRender implements BlockEntityRenderer<LuminousLightSignBlockEntity,LuminousLightSignRenderState> {
@@ -62,14 +58,5 @@ public class LuminousLightSignRender implements BlockEntityRenderer<LuminousLigh
         int textWidth = font.width(text);
         int color = state.color;
         submitNodeCollector.submitText(poseStack,(float) -textWidth / 2 + 1,1,Component.literal(text).getVisualOrderText(),false,Font.DisplayMode.NORMAL, state.lightCoords,color,0,15728880);
-//        startRender(text,textWidth,color,poseStack,pBuffer);
     }
-
-//    private void startRender(String text, int textWidth, int color, PoseStack poseStack, MultiBufferSource pBuffer){
-//        this.font.drawInBatch(Component.nullToEmpty(text), (float) -textWidth / 2 + 1, 1, color, false, poseStack.last().pose(), pBuffer, Font.DisplayMode.NORMAL, 0, 15728880);
-//        if (pBuffer instanceof MultiBufferSource.BufferSource) {
-//            BakedGlyph texturedglyph = font.getFontSet(Style.DEFAULT_FONT).whiteGlyph();
-//            ((MultiBufferSource.BufferSource)pBuffer).endBatch(texturedglyph.renderType(Font.DisplayMode.NORMAL));
-//        }
-//    }
 }

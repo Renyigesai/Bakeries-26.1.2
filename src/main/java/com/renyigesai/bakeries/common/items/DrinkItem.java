@@ -43,9 +43,9 @@ public class DrinkItem extends RepeatEatItem{
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, display, builder, tooltipFlag);
         if (this.upEffect > 0) {
             builder.accept(Component.translatable("tooltips.bakeries.drink", Component.translatable("potion.potency." + this.upEffect)).withStyle(ChatFormatting.DARK_GRAY));
         }
-        super.appendHoverText(stack, context, display, builder, tooltipFlag);
     }
 }

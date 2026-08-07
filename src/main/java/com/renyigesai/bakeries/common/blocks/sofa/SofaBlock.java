@@ -1,5 +1,6 @@
 package com.renyigesai.bakeries.common.blocks.sofa;
 
+import com.mojang.serialization.MapCodec;
 import com.renyigesai.bakeries.api.ResourceLocation;
 import com.renyigesai.bakeries.common.blocks.HorizontalConnectBlock;
 import com.renyigesai.bakeries.common.init.BakeriesEntityTypes;
@@ -9,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -23,6 +25,15 @@ public class SofaBlock extends HorizontalConnectBlock {
         this.color = color;
     }
 
+    public SofaBlock(Properties pProperties) {
+        super(pProperties);
+        this.color = Color.RED;
+    }
+
+    @Override
+    public MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(SofaBlock::new);
+    }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {

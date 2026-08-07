@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "experience": 1,
+  "cookingtime": 100,
+  "ingredient": "bakeries:taro",
+  "result":{
+    "count": 1,
+    "id": "bakeries:cooked_taro"
+  }
+}

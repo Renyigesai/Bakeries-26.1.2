@@ -6,6 +6,7 @@ import com.renyigesai.bakeries.common.recipe.FlourSieveRecipe;
 import com.renyigesai.bakeries.common.utils.ItemUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -36,7 +37,7 @@ public class FlourSieveItem extends Item {
 
 
     public FlourSieveItem(Identifier identifier) {
-        super(new Item.Properties().durability(250).setId(ResourceKey.create(Registries.ITEM, identifier)));
+        super(new Item.Properties().durability(250).enchantable(14).setId(ResourceKey.create(Registries.ITEM, identifier)));
     }
 
     @Override

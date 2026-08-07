@@ -32,7 +32,7 @@ public class EternalBaguetteItem extends Item{
     public static final Identifier BASE_ATTACK_KNOCKBACK_ID = ResourceLocation.fromNamespaceAndPath("bakeries","base_attack_knockback");
 
     public EternalBaguetteItem(Identifier identifier) {
-        super(new Properties().stacksTo(1).rarity(Rarity.EPIC).attributes(createAttributes()).setId(ResourceKey.create(Registries.ITEM,identifier)));
+        super(new Properties().stacksTo(1).rarity(Rarity.EPIC).enchantable(15).attributes(createAttributes()).setId(ResourceKey.create(Registries.ITEM,identifier)));
     }
 
     public static ItemAttributeModifiers createAttributes() {

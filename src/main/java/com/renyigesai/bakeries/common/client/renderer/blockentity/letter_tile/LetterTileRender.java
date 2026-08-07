@@ -2,10 +2,8 @@ package com.renyigesai.bakeries.common.client.renderer.blockentity.letter_tile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.renyigesai.bakeries.common.blocks.letter_tile.LetterTileBlock;
 import com.renyigesai.bakeries.common.blocks.letter_tile.LetterTileBlockEntity;
-import com.renyigesai.bakeries.common.blocks.luminous_light_sign.LuminousLightSignBlock;
-import com.renyigesai.bakeries.common.blocks.luminous_light_sign.LuminousLightSignBlockEntity;
-import com.renyigesai.bakeries.common.client.renderer.blockentity.luminous_light_sign.LuminousLightSignRenderState;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.SubmitNodeCollector;
@@ -29,7 +27,7 @@ public class LetterTileRender implements BlockEntityRenderer<LetterTileBlockEnti
         BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTicks, cameraPosition, breakProgress);
         state.text = blockEntity.getText();
         state.color = blockEntity.getColor();
-        state.facing = blockEntity.getBlockState().getValue(LuminousLightSignBlock.FACING);
+        state.facing = blockEntity.getBlockState().getValue(LetterTileBlock.FACING);
     }
 
     @Override

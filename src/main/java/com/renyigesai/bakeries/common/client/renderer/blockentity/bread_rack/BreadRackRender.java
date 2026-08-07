@@ -117,19 +117,18 @@ public class BreadRackRender extends BlockEntityItemRenderer<BreadRackBlockEntit
                 Direction facing = state.facing;
                 float rotation = facing.toYRot();
                 Vec2 pos2d = transformPositionByDirection(VEC2S[state.getInventoryCount()][slot],facing);
-                // ������Ʒ�������еľ������꣨���߶ȣ�
                 Vec3 worldPos = transitionVec3(pos2d);
                 poseStack.pushPose();
-                // 1. ƽ�Ƶ���Ʒ������λ��
                 poseStack.translate(worldPos.x, 0.5 + 0.046875 + (slot > 1 ? 0.453125 : 0), worldPos.z);
-                // 2. ��Ʒ�������ת��15��΢�� + ������ת��
+
+                if (facing == Direction.NORTH || facing == Direction.SOUTH) {
+                    poseStack.mulPose(Axis.YP.rotationDegrees(180));
+                }
+
                 poseStack.mulPose(Axis.YP.rotationDegrees(rotation + 15));
-                // 3. ����
                 float size = 1.0f;
                 poseStack.scale(size, size, size);
-                // 4. ����ģ��ê�㣺ʹģ�����Ķ��뵱ǰԭ��
                 poseStack.translate(-0.5, -0.5, -0.5);
-                // 5. �ύ
                 blockModelRenderState.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
                 poseStack.popPose();
             }

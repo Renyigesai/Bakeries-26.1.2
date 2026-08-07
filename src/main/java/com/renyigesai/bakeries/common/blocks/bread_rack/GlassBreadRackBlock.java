@@ -1,5 +1,6 @@
 package com.renyigesai.bakeries.common.blocks.bread_rack;
 
+import com.mojang.serialization.MapCodec;
 import com.renyigesai.bakeries.common.init.BakeriesBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -28,6 +30,11 @@ public class GlassBreadRackBlock extends BreadRackBlock {
     public GlassBreadRackBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN,false).setValue(TYPE,Type.SINGLE).setValue(SINGLE,false));
+    }
+
+    @Override
+    public MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(GlassBreadRackBlock::new);
     }
 
     @Override

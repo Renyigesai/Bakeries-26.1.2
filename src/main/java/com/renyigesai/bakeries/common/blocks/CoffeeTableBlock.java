@@ -1,11 +1,13 @@
 package com.renyigesai.bakeries.common.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -22,8 +24,17 @@ public class CoffeeTableBlock extends HorizontalConnectBlock {
         super(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).setId(ResourceKey.create(Registries.BLOCK,identifier)));
     }
 
+    public CoffeeTableBlock(Properties properties) {
+        super(properties);
+    }
+
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return BOX;
+    }
+
+    @Override
+    public MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(CoffeeTableBlock::new);
     }
 }

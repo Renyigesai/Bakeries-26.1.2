@@ -1,5 +1,6 @@
 package com.renyigesai.bakeries.common.blocks.bread_rack;
 
+import com.mojang.serialization.MapCodec;
 import com.renyigesai.bakeries.common.blocks.HorizontalConnectBlock;
 import com.renyigesai.bakeries.common.utils.ItemUtils;
 import net.minecraft.core.BlockPos;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -35,6 +37,11 @@ public class BreadRackBlock extends HorizontalConnectBlock implements EntityBloc
     @Override
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return BOX;
+    }
+
+    @Override
+    public MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(BreadRackBlock::new);
     }
 
     @Override
