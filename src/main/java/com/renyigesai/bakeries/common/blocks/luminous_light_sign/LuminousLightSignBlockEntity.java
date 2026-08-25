@@ -29,6 +29,7 @@ public class LuminousLightSignBlockEntity extends BlockEntity {
 
     public void setText(String text) {
         this.text = text;
+        update();
     }
 
     public int getColor() {
@@ -37,6 +38,7 @@ public class LuminousLightSignBlockEntity extends BlockEntity {
 
     public void setColor(int color) {
         this.color = color;
+        update();
     }
 
     @Override
@@ -62,6 +64,13 @@ public class LuminousLightSignBlockEntity extends BlockEntity {
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    public void update(){
+        setChanged();
+        if (this.level != null) {
+            this.level.sendBlockUpdated(this.getBlockPos(),this.getBlockState(),this.getBlockState(),3);
+        }
     }
 
 }

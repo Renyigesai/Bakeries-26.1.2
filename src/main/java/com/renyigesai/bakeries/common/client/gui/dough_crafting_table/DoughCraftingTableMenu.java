@@ -37,7 +37,7 @@ public class DoughCraftingTableMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
     private final DataSlot selectedRecipeIndex = DataSlot.standalone();
     private final Level level;
-    // ¸ÄÓÃ List ´æ´¢Åä·½
+    // ???? List ?æ´¢??
     private List<RecipeHolder<DoughCraftingTableRecipe>> recipesForInput = new ArrayList<>();
     private ItemStack input = ItemStack.EMPTY;
     private long lastSoundTime;
@@ -196,7 +196,7 @@ public class DoughCraftingTableMenu extends AbstractContainerMenu {
 
     @Override
     public MenuType<?> getType() {
-        return BakeriesMenuType.DOUGH_CRAFTING_TABLE_MENU.get(); // ·¢²¼Ê±Ó¦Ìæ»»Îª×Ô¼ºµÄ MenuType
+        return BakeriesMenuType.DOUGH_CRAFTING_TABLE_MENU.get(); // ???????æ»»?????? MenuType
     }
 
     public void registerUpdateListener(Runnable slotUpdateListener) {

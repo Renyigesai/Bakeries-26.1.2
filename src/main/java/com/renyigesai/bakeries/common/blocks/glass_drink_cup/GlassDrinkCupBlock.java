@@ -43,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
 public class GlassDrinkCupBlock extends BaseEntityBlock {
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    private static final VoxelShape SHAPE = box(6.0, 0, 6.0, 10, 7.5, 10);
+    private static final VoxelShape SHAPE = box(6.0, 0, 6.0, 10, 9.25, 10);
 
     public GlassDrinkCupBlock(Identifier identifier) {
         super(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).strength(0.1F,0.1F).setId(ResourceKey.create(Registries.BLOCK,identifier)));
